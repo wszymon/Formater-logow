@@ -19,6 +19,48 @@ class Html: public Format {
 
 };
 
+class Procedure {
+private:
+    char choice = NULL;
+public:
+    char whitchFormat() {
+        char choice = NULL;
+        std::cin >> choice;
+        return tolower(choice);
+    }
+    void startMessage() {
+        std::cout <<
+            "Wybierz format\n" <<
+            "c - csv\n" <<
+            "x - xml\n" <<
+            "h - html\n" <<
+            "0 - koniec programu\n";
+    }
+
+    void start() {
+        do {
+            startMessage();
+            choice = whitchFormat();
+            switch (choice) {
+            case 'c':
+
+                break;
+            case 'x':
+
+                break;
+            case 'h':
+
+                break;
+            case '0':
+
+                break;
+            default:
+
+            }
+        } while (choice == '0');
+    }
+};
+
 int main()
 {
     return 0;
