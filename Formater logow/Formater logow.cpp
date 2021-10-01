@@ -7,15 +7,15 @@ public:
     virtual void print() = 0;
 };
 
-class Csv {
+class Csv: public Format {
     
 };
 
-class Xml {
+class Xml: public Format {
 
 };
 
-class Html {
+class Html: public Format {
 
 };
 
