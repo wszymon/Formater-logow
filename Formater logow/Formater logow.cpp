@@ -2,25 +2,34 @@
 
 class Format {
 protected:
-    char whitchOne;
 public:
     virtual void print() = 0;
 };
 
 class Csv: public Format {
-    
+public:
+    void print() {
+
+    }
 };
 
 class Xml: public Format {
+public:
+    void print() {
 
+    }
 };
 
 class Html: public Format {
+public:
+    void print() {
 
+    }
 };
 
 class Procedure {
 private:
+    Format* poliPointer;
     char choice = NULL;
 public:
     char whitchFormat() {
@@ -43,19 +52,22 @@ public:
             choice = whitchFormat();
             switch (choice) {
             case 'c':
-
+                Csv c;
+                poliPointer = &c;
                 break;
             case 'x':
-
+                Xml x;
+                poliPointer = &x;
                 break;
             case 'h':
-
+                Html h;
+                poliPointer = &h;
                 break;
             case '0':
-
+                std::cout << "Koniec programu.\n";
                 break;
             default:
-
+                std::cout << "Zly wybor!\n\n";
             }
         } while (choice == '0');
     }
