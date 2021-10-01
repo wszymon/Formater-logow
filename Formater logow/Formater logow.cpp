@@ -1,5 +1,24 @@
 #include <iostream>
 
+class Format {
+protected:
+    char whitchOne;
+public:
+    virtual void print() = 0;
+};
+
+class Csv {
+    
+};
+
+class Xml {
+
+};
+
+class Html {
+
+};
+
 int main()
 {
     return 0;
@@ -7,6 +26,7 @@ int main()
 
 
 /*
+
 1. Formater logów
 Napisaæ program, który bêdzie dane podane na wejœciu wyœwietla³ w jednym z wybranych
 formatów:
@@ -66,4 +86,5 @@ Wyjœcie:
 </table>
 </body>
 </html>
+
 */
