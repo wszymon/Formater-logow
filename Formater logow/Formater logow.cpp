@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 class Format {
 protected:
@@ -29,8 +30,9 @@ public:
 
 class Procedure {
 private:
-    Format* poliPointer;
+    Format* poliPointer{};
     char choice = NULL;
+    std::vector<std::string> linesArray;
 public:
     char whitchFormat() {
         char choice = NULL;
@@ -45,23 +47,33 @@ public:
             "h - html\n" <<
             "0 - koniec programu\n";
     }
-
+    void setPoliPointer(Format *pointer) {
+        pointer->print();
+        std::cout << "\n";
+    }
+    void input() {
+        std::string textLine{};
+        while (std::cin >> textLine) {
+            if (std::getchar() == '=') break;
+            linesArray.push_back(textLine);
+        }
+    }
     void start() {
         do {
             startMessage();
             choice = whitchFormat();
             switch (choice) {
             case 'c':
-                Csv c;
-                poliPointer = &c;
+            {Csv c;
+            poliPointer = &c; }
                 break;
             case 'x':
-                Xml x;
-                poliPointer = &x;
+            {Xml x;
+            poliPointer = &x; }
                 break;
             case 'h':
-                Html h;
-                poliPointer = &h;
+            {Html h;
+            poliPointer = &h; }
                 break;
             case '0':
                 std::cout << "Koniec programu.\n";
@@ -69,12 +81,14 @@ public:
             default:
                 std::cout << "Zly wybor!\n\n";
             }
-        } while (choice == '0');
+        } while (choice == 0);
     }
 };
 
 int main()
 {
+    Procedure p;
+    p.start();
     return 0;
 }
 
