@@ -4,26 +4,31 @@
 class Format {
 protected:
 public:
-    virtual void print() = 0;
+    virtual void print(std::vector<std::string>) = 0;
 };
 
 class Csv: public Format {
 public:
-    void print() {
-
+    void print(std::vector<std::string> arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            for (int j = 0; j < arr[i].length(); j += 2) {
+                std::cout << arr[i][j] << ", ";
+            }
+            std::cout << "\n";
+        }
     }
 };
 
 class Xml: public Format {
 public:
-    void print() {
+    void print(std::vector<std::string>) {
 
     }
 };
 
 class Html: public Format {
 public:
-    void print() {
+    void print(std::vector<std::string>) {
 
     }
 };
@@ -32,7 +37,6 @@ class Procedure {
 private:
     Format* poliPointer{};
     char choice = NULL;
-    std::vector<std::string> linesArray;
 public:
     char whitchFormat() {
         char choice = NULL;
@@ -47,26 +51,30 @@ public:
             "h - html\n" <<
             "0 - koniec programu\n";
     }
-    void setPoliPointer(Format *pointer) {
-        pointer->print();
+    void setPoliPointer(Format *pointer, std::vector<std::string> arr) {
+        pointer->print(arr);
         std::cout << "\n";
     }
-    void input() {
+    std::vector<std::string> input() {
+        std::vector<std::string> linesArray;
         std::string textLine{};
         while (std::cin >> textLine) {
             if (std::getchar() == '=') break;
             linesArray.push_back(textLine);
         }
+        return linesArray;
     }
     void start() {
         do {
             startMessage();
             choice = whitchFormat();
             switch (choice) {
-            case 'c':
-            {Csv c;
-            poliPointer = &c; }
-                break;
+            case 'c':{
+            Csv c;
+            poliPointer = &c;
+            setPoliPointer(poliPointer, input());
+            break;
+            }
             case 'x':
             {Xml x;
             poliPointer = &x; }
