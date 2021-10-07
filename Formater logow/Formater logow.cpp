@@ -59,8 +59,8 @@ public:
         std::vector<std::string> linesArray;
         std::string textLine{};
         while (std::cin >> textLine) {
-            if (std::getchar() == '=') break;
-            linesArray.push_back(textLine);
+            if (std::getchar() == 27) break;
+            else linesArray.push_back(textLine);
         }
         return linesArray;
     }
@@ -89,7 +89,7 @@ public:
             default:
                 std::cout << "Zly wybor!\n\n";
             }
-        } while (choice == 0);
+        } while (choice != '0');
     }
 };
 
