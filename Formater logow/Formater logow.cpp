@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 class Format {
 protected:
@@ -11,7 +12,8 @@ class Csv: public Format {
 public:
     void print(std::vector<std::string> arr) {
         for (int i = 0; i < arr.size(); i++) {
-            for (int j = 0; j < arr[i].length(); j += 2) {
+            for (int j = 0; j < arr[i].length(); j++) {
+                if(isalpha(arr[i][j]) or isdigit((arr[i][j])))
                 std::cout << arr[i][j] << ", ";
             }
             std::cout << "\n";
@@ -58,9 +60,9 @@ public:
     std::vector<std::string> input() {
         std::vector<std::string> linesArray;
         std::string textLine{};
-        while (std::cin >> textLine) {
-            if (std::getchar() == 27) break;
-            else linesArray.push_back(textLine);
+        while (std::getline(std::cin, textLine)) { //input for change
+            if (textLine == "q") break;
+            linesArray.push_back(textLine);
         }
         return linesArray;
     }
