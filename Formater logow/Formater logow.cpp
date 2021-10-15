@@ -23,8 +23,15 @@ public:
 
 class Xml: public Format {
 public:
-    void print(std::vector<std::string>) {
-
+    void print(std::vector<std::string> arr) {
+        std::cout << "<?xml version=\"1.0\" encoding=\"ISO - 8859 - 1\" ?> \n< results >\n ";
+        for (int i = 0; i < arr.size(); i++) {
+            std::cout << "<row>\n";
+            for (int j = 0; j < arr[i].length(); j++) {
+                std::cout << "<field>" << arr[i][j] << "</field>\n";
+            }
+            std::cout << "<\\row>\n";
+        }
     }
 };
 
@@ -72,19 +79,23 @@ public:
             choice = whitchFormat();
             switch (choice) {
             case 'c':{
-            Csv c;
-            poliPointer = &c;
-            setPoliPointer(poliPointer, input());
-            break;
+                Csv c;
+                poliPointer = &c;
+                setPoliPointer(poliPointer, input());
+                break;
             }
-            case 'x':
-            {Xml x;
-            poliPointer = &x; }
+            case 'x': {
+                Xml x;
+                poliPointer = &x;
+                setPoliPointer(poliPointer, input());
                 break;
-            case 'h':
-            {Html h;
-            poliPointer = &h; }
+            }
+            case 'h': {
+                Html h;
+                poliPointer = &h;
+                setPoliPointer(poliPointer, input());
                 break;
+            }
             case '0':
                 std::cout << "Koniec programu.\n";
                 break;
