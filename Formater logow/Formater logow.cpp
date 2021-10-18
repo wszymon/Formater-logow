@@ -13,7 +13,7 @@ public:
     void print(std::vector<std::string> arr) {
         for (int i = 0; i < arr.size(); i++) {
             for (int j = 0; j < arr[i].length(); j++) {
-                if(isalpha(arr[i][j]) or isdigit((arr[i][j])))
+                if(!isspace(arr[i][j]))
                 std::cout << arr[i][j] << ", ";
             }
             std::cout << "\n";
@@ -24,14 +24,16 @@ public:
 class Xml: public Format {
 public:
     void print(std::vector<std::string> arr) {
-        std::cout << "<?xml version=\"1.0\" encoding=\"ISO - 8859 - 1\" ?> \n< results >\n ";
-        for (int i = 0; i < arr.size(); i++) {
-            std::cout << "<row>\n";
+        std::cout << "<?xml version=\"1.0\" encoding=\"ISO - 8859 - 1\" ?> \n   <results>\n ";
+        for (int i = 1; i < arr.size(); i++) {
+            std::cout << "      <row>\n";
             for (int j = 0; j < arr[i].length(); j++) {
-                std::cout << "<field>" << arr[i][j] << "</field>\n";
+                if(!isspace(arr[i][j]))
+                std::cout << "         <field>" << arr[i][j] << "</field>\n";
             }
-            std::cout << "<\\row>\n";
+            std::cout << "      <\\row>\n";
         }
+        std::cout << "   <\\results>\n";
     }
 };
 
