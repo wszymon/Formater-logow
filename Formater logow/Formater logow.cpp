@@ -31,16 +31,25 @@ public:
                 if(!isspace(arr[i][j]))
                 std::cout << "         <field>" << arr[i][j] << "</field>\n";
             }
-            std::cout << "      <\\row>\n";
+            std::cout << "      </row>\n";
         }
-        std::cout << "   <\\results>\n";
+        std::cout << "   </results>\n";
     }
 };
 
 class Html: public Format {
 public:
-    void print(std::vector<std::string>) {
-
+    void print(std::vector<std::string> arr) {
+        std::cout << "\n<!DOCTYPE html>\n<html>\n<head>\n   <title>Results</title>\n</head>\n<body>\n<table>\n";
+        for (int i = 1; i < arr.size(); i++) {
+            std::cout << "   <tr>\n";
+            for (int j = 0; j < arr[i].length(); j++) {
+                if (!isspace(arr[i][j]))
+                    std::cout << "      <td>" << arr[i][j] << "</td>\n";
+            }
+            std::cout << "   </tr>\n";
+        }
+        std::cout << "</table>\n</body>\n</html>\n";
     }
 };
 
